@@ -11,6 +11,7 @@ function NavbarComp() {
             <Nav.Link>Home</Nav.Link>
           </Nav>
           <Button>Login</Button>
+          <Button>Sign Up</Button>
         </Container>
       </Navbar>
     </div>
