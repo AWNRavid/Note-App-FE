@@ -1,0 +1,16 @@
+.note-container {
+    height: 100%;
+    padding-left: 120px;
+}
+
+.note-container-notes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    overflow-y: scroll;
+}
+
+h2 {
+    padding-top: 75px;
+    padding-bottom: 20px;
+}
