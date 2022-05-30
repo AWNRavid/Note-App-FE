@@ -16,4 +16,10 @@
     line-height: 1.87rem;
     outline: none;
     border: none;
+    overflow: auto;
+}
+
+.note-content {
+    /* border: none; */
+    border-radius: 5%;
 }
