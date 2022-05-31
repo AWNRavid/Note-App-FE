@@ -1,25 +1,29 @@
 .note {
-    padding: 25px;
-    height: 280px;
-    width: 260px;
-    display: flex;
-    flex-direction: column;
-    background-color: #9ADCFF;
-    border-radius: 30px;
+  padding: 25px;
+  height: 280px;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  background-color: #9adcff;
+  border-radius: 30px;
 }
 
 .note-text {
-    flex: 1;
-    resize: none;
-    background-color: transparent;
-    font-size: 1rem;
-    line-height: 1.87rem;
-    outline: none;
-    border: none;
-    overflow: auto;
+  flex: 1;
+  resize: none;
+  background-color: transparent;
+  font-size: 1rem;
+  line-height: 1.87rem;
+  outline: none;
+  border: none;
+  overflow: auto;
 }
 
 .note-content {
-    /* border: none; */
-    border-radius: 5%;
+  /* border: none; */
+  border-radius: 5%;
+}
+
+.emboh {
+  display: block;
 }
