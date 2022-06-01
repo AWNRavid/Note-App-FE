@@ -37,25 +37,38 @@ function App() {
 
   const handleAddNewNote = () => {
     const id = notes[notes.length - 1].id + 1;
+  };
 
-  }
+  const handleEditNote = (newNote) => {
+    console.log(newNote);
+    console.log(notes);
+    // notes.map((note) => {
+    //   // note.id === newNote.id ? {note.content:newNote.content,} : note
+    // })
 
-  // console.log(notes[notes.length - 1]);
+    for (let i = 0; i < notes.length; i++) {
+      if (notes[i].id === newNote.id) {
+        // console.log('found');
+        notes[i].title = newNote.title
+        notes[i].content = newNote.content
+      }
+    }
+  };
 
   const handleDelete = (id) => {
     const noteList = notes.filter((note) => {
-      return note.id !== id
-    })
+      return note.id !== id;
+    });
     setNotes(noteList);
-  }
+  };
 
   return (
     <div>
       <NavbarComp />
-      <Container className='mt-5'>
+      <Container className="mt-5">
         <Button onClick={handleAddNewNote}>Add New Note</Button>
       </Container>
-      <NoteContainer notes={notes} setNotes={setNotes} handleDelete={handleDelete} />
+      <NoteContainer notes={notes} setNotes={setNotes} handleDelete={handleDelete} handleEditNote={handleEditNote} />
       {/* <textarea name="" id="" cols="30" rows="10">test</textarea> */}
     </div>
   );
