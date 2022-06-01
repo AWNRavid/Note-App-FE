@@ -80,12 +80,14 @@ function Note({ note, setNotes, handleDelete, handleEditNote }) {
             <Form.Control as="textarea" style={{ height: '300px' }} value={noteContent} onChange={handleNote} />
           </Form.Group>
 
-          <Button variant="primary" onClick={handleClose}>
-            Discard
-          </Button>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
+          <div className="d-flex justify-content-between px-5 pb-3">
+            <Button variant="primary" onClick={handleClose}>
+              Discard
+            </Button>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </div>
         </Form>
       </Modal>
     </div>
