@@ -4,6 +4,7 @@ import NavbarComp from './Components/NavbarComp';
 import NoteContainer from './Components/NoteContainer';
 import { useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
+import AddNote from './Components/AddNote';
 
 function App() {
   const [notes, setNotes] = useState([
@@ -35,8 +36,8 @@ function App() {
     },
   ]);
 
-  const handleAddNewNote = () => {
-    const id = notes[notes.length - 1].id + 1;
+  const handleAddNewNote = (newNote) => {
+    setNotes([...notes, newNote]);
   };
 
   const handleEditNote = (newNote) => {
@@ -49,8 +50,8 @@ function App() {
     for (let i = 0; i < notes.length; i++) {
       if (notes[i].id === newNote.id) {
         // console.log('found');
-        notes[i].title = newNote.title
-        notes[i].content = newNote.content
+        notes[i].title = newNote.title;
+        notes[i].content = newNote.content;
       }
     }
   };
@@ -65,8 +66,11 @@ function App() {
   return (
     <div>
       <NavbarComp />
-      <Container className="mt-5">
+      {/* <Container className="mt-5">
         <Button onClick={handleAddNewNote}>Add New Note</Button>
+      </Container> */}
+      <Container className="mt-5">
+        <AddNote notes={notes} handleAddNewNote={handleAddNewNote} />
       </Container>
       <NoteContainer notes={notes} setNotes={setNotes} handleDelete={handleDelete} handleEditNote={handleEditNote} />
       {/* <textarea name="" id="" cols="30" rows="10">test</textarea> */}
