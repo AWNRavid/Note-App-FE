@@ -7,6 +7,7 @@ function Note({ note, setNotes, handleDelete, handleEditNote }) {
   const [noteTitle, setNoteTitle] = useState(note.title);
   const [noteContent, setNoteContent] = useState(note.content);
   const [show, setShow] = useState(false);
+  
 
   const handleClose = () => {
     setShow(false);

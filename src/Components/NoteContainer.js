@@ -3,7 +3,7 @@ import Note from './Note';
 import './NoteContainer.css';
 import { Container } from 'react-bootstrap';
 
-function NoteContainer({ notes, setNotes, handleDelete, handleEditNote }) {
+function NoteContainer({ notes, setNotes, handleDelete, handleEditNote}) {
   return (
     <Container>
       <h2>My Notes</h2>
