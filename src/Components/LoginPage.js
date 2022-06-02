@@ -32,7 +32,7 @@ function LoginPage() {
                   </div>
                 </div>
                 <hr></hr>
-                <a class="link" href="#!">Didn't have account? Click here.</a>
+                <a class="link" href="#!">Didn't have account? Click here to Register</a>
               </form>
             </div>
           </div>
