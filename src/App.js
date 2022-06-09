@@ -5,6 +5,7 @@ import NoteContainer from './Components/NoteContainer';
 import { useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
 import AddNote from './Components/AddNote';
+import LoginPage from './Components/LoginPage';
 
 function App() {
   const [notes, setNotes] = useState([
@@ -75,6 +76,7 @@ function App() {
       <NoteContainer notes={notes} setNotes={setNotes} handleDelete={handleDelete} handleEditNote={handleEditNote} />
       {/* <textarea name="" id="" cols="30" rows="10">test</textarea> */}
     </div>
+    
   );
 }
 
