@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import './Note.css';
 import { Button, Modal, Form } from 'react-bootstrap';
+import { useEffect } from 'react';
 
 function Note({ note, setNotes, handleDelete, handleEditNote }) {
   // console.log(note);
   const [noteTitle, setNoteTitle] = useState(note.title);
   const [noteContent, setNoteContent] = useState(note.content);
   const [show, setShow] = useState(false);
-  
 
   const handleClose = () => {
     setShow(false);
-    setNoteContent(note.title);
-    setNoteTitle(note.content);
+    setNoteTitle(note.title);
+    setNoteContent(note.content);
   };
   const handleShow = () => setShow(true);
 

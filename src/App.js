@@ -2,81 +2,178 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavbarComp from './Components/NavbarComp';
 import NoteContainer from './Components/NoteContainer';
-import { useState } from 'react';
-import { Button, Container } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { Container } from 'react-bootstrap';
 import AddNote from './Components/AddNote';
 import LoginPage from './Components/LoginPage';
+import Register from './Components/Register';
+import MainPage from './Components/MainPage';
+import About from './Components/About';
+import Dummy from './Components/Dummy';
+import { Link, Route, Switch, useHistory } from 'react-router-dom';
+import api from './api/notes';
 
 function App() {
-  const [notes, setNotes] = useState([
-    {
-      id: 1,
-      title: 'what',
-      content: 'the',
-    },
-    {
-      id: 2,
-      title: 'learn react for dummies',
-      content: "i don't understand react",
-    },
-    {
-      id: 3,
-      title: 'please',
-      content: 'help',
-    },
-    {
-      id: 4,
-      title: 'Lorem, ipsum.',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam laboriosam rerum dignissimos officiis et earum nesciunt excepturi sunt odio tempore. Laborum, alias harum libero totam nobis ea omnis illo ab quae aperiam culpa amet beatae. Quasi neque voluptate natus magni aliquam, sequi incidunt explicabo quisquam ducimus quo, ex, quam blanditiis?',
-    },
-    {
-      id: 5,
-      title: '',
-      content: '',
-    },
-  ]);
+  const [notes, setNotes] = useState([]);
+  const history = useHistory();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [whoLogin, setWhoLogin] = useState();
+  const [isLogin, setIsLogin] = useState(false);
+  // const [token, setToken] = useState('')
 
-  const handleAddNewNote = (newNote) => {
-    setNotes([...notes, newNote]);
-  };
-
-  const handleEditNote = (newNote) => {
-    console.log(newNote);
-    console.log(notes);
-    // notes.map((note) => {
-    //   // note.id === newNote.id ? {note.content:newNote.content,} : note
-    // })
-
-    for (let i = 0; i < notes.length; i++) {
-      if (notes[i].id === newNote.id) {
-        // console.log('found');
-        notes[i].title = newNote.title;
-        notes[i].content = newNote.content;
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const newMembers = {
+      username,
+      password,
+    };
+    // const {username, password} = req.body;
+    console.log(username, password);
+    try {
+      const response = await api.post('/register', newMembers);
+      console.log(response);
+      if (response.data.isExist === true) {
+        console.log('user already exist');
+      } else {
+        setUsername('');
+        setPassword('');
+        history.push('/login');
       }
+    } catch (error) {
+      console.log(`Error: ${error.message}`);
     }
   };
 
-  const handleDelete = (id) => {
-    const noteList = notes.filter((note) => {
-      return note.id !== id;
-    });
-    setNotes(noteList);
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    // console.log(username, password);
+    try {
+      const response = await api.post('/login', { username, password });
+      // console.log(response);
+      console.log(response.data);
+      setUsername('');
+      setPassword('');
+      localStorage.setItem('token', response.data.accessToken);
+      // setToken(localStorage.getItem('token'));
+      setIsLogin(true);
+      history.push('/note');
+    } catch (error) {
+      console.log(`Error: ${error}`);
+    }
+  };
+
+  const handleGetNote = async () => {
+    // token dimasukkan dulu ke axios
+    try {
+      const token = localStorage.getItem('token');
+      const response = await api.get(`/get-note/:id`, {
+        headers: {
+          Authorization: `token ${token}`,
+        },
+      });
+      setNotes(response.data.reverse());
+    } catch (error) {
+      console.log(`Error: ${error}`);
+      localStorage.removeItem('token');
+      history.push('/login')
+    }
+  };
+
+  const handleAddNewNote = async (newNote) => {
+    console.log(newNote);
+    const { title, content } = newNote;
+    console.log(title, content);
+    try {
+      const token = localStorage.getItem('token');
+      const response = await api.post(
+        `/create-note/:userId`,
+        { title, content },
+        {
+          headers: {
+            Authorization: `token ${token}`,
+          },
+        }
+      );
+      console.log(response);
+      // setNotes([...notes, response.data]);
+    } catch (error) {
+      console.log(`Error: ${error}`);
+      localStorage.removeItem('token');
+      history.push('/login')
+    }
+  };
+
+  const handleEditNote = async (newNote) => {
+    console.log(newNote);
+    const { id, title, content } = newNote;
+    console.log(title, content);
+    try {
+      const token = localStorage.getItem('token');
+      const response = await api.put(
+        `/edit-note/:userId/:noteId`,
+        { id, title, content },
+        {
+          headers: {
+            Authorization: `token ${token}`,
+          },
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(`Error: ${error}`);
+      localStorage.removeItem('token');
+      history.push('/login')
+    }
+  };
+
+  const handleDelete = async (id) => {
+    console.log(id);
+    try {
+      const token = localStorage.getItem('token');
+      const response = await api.delete(`/delete-note/${id}`, {
+        headers: {
+          Authorization: `token ${token}`,
+        },
+      });
+    } catch (error) {
+      console.log(`Error: ${error}`);
+    }
+  };
+
+  const handleLogout = () => {
+    console.log('log out');
+    history.push('/login');
+    localStorage.removeItem('token');
   };
 
   return (
     <div>
-      <NavbarComp />
-      {/* <Container className="mt-5">
-        <Button onClick={handleAddNewNote}>Add New Note</Button>
-      </Container> */}
-      <Container className="mt-5">
-        <AddNote notes={notes} handleAddNewNote={handleAddNewNote} />
-      </Container>
-      <NoteContainer notes={notes} setNotes={setNotes} handleDelete={handleDelete} handleEditNote={handleEditNote} />
-      {/* <textarea name="" id="" cols="30" rows="10">test</textarea> */}
+      <NavbarComp isLogin={isLogin} handleLogout={handleLogout} />
+      <Switch>
+        <Route exact path="/">
+          <MainPage />
+        </Route>
+        <Route path="/login">
+          <LoginPage username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleLogin={handleLogin} />
+        </Route>
+        <Route path="/register">
+          <Register username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleRegister={handleRegister} />
+        </Route>
+        <Route path="/note">
+          <Container className="mt-5">
+            <AddNote notes={notes} handleAddNewNote={handleAddNewNote} />
+          </Container>
+          <NoteContainer notes={notes} setNotes={setNotes} handleGetNote={handleGetNote} handleDelete={handleDelete} handleEditNote={handleEditNote} />
+        </Route>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path='*'>
+          <MainPage />
+        </Route>
+      </Switch>
     </div>
-    
   );
 }
 

@@ -2,8 +2,14 @@ import React from 'react';
 import Note from './Note';
 import './NoteContainer.css';
 import { Container } from 'react-bootstrap';
+import { useEffect } from 'react';
 
-function NoteContainer({ notes, setNotes, handleDelete, handleEditNote}) {
+function NoteContainer({ notes, setNotes, handleDelete, handleEditNote, handleGetNote}) {
+
+  useEffect(() => {
+    handleGetNote()
+  }, [handleGetNote])
+
   return (
     <Container>
       <h2>My Notes</h2>
@@ -13,45 +19,8 @@ function NoteContainer({ notes, setNotes, handleDelete, handleEditNote}) {
         })}
       </div>
     </Container>
+    // <div></div>
   );
 }
 
 export default NoteContainer;
-
-/* 
-<Note
-          note={{
-            text: 'tesgdbfjd',
-            time: '2:45 AM',
-            color: 'FFF89A',
-          }}
-        />
-        <Note
-          note={{
-            text: 'tesgdbfjd',
-            time: '2:45 AM',
-            color: 'FFF89A',
-          }}
-        />
-        <Note
-          note={{
-            text: 'tesgdbfjd',
-            time: '2:45 AM',
-            color: 'FFF89A',
-          }}
-        />
-        <Note
-          note={{
-            text: 'tesgdbfjd',
-            time: '2:45 AM',
-            color: 'FFF89A',
-          }}
-        />
-        <Note
-          note={{
-            text: 'tesgdbfjd',
-            time: '2:45 AM',
-            color: 'FFF89A',
-          }}
-        />
-*/

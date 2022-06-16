@@ -15,9 +15,9 @@ function AddNote({ notes, handleAddNewNote }) {
 
   const add = (e) => {
     e.preventDefault();
-    const id = notes[notes.length - 1].id + 1;
+    // const id = notes[notes.length - 1].id + 1;
     const newNote = {
-      id: id,
+      // id: id,
       title: title,
       content: content,
     };
