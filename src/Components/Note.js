@@ -37,10 +37,10 @@ function Note({ note, setNotes, handleDelete, handleEditNote }) {
   };
 
   return (
-    <div className="note">
+    <div className="note shadow">
       {/* display notes */}
       <h3>{note.title}</h3>
-      {/* <h3>{noteTitle}</h3> */}
+      <hr />
       <textarea
         className="note-text"
         cols="30"
@@ -54,17 +54,21 @@ function Note({ note, setNotes, handleDelete, handleEditNote }) {
         {note.content}
       </textarea>
       <div className="d-flex justify-content-between">
-        <Button
+        {/* <Button
           className="mt-2"
           onClick={() => {
             handleDelete(note.id);
           }}
         >
           delete
-        </Button>
-        <Button className="mt-2 edit-button" onClick={handleShow}>
+        </Button> */}
+        <img className='delete-icon' alt='edit' src={require('./delete.png')} onClick={() => {
+            handleDelete(note.id);
+          }}></img>
+        {/* <Button className="mt-2 edit-button" onClick={handleShow}>
           edit
-        </Button>
+        </Button> */}
+        <img className='edit-icon' alt='edit' src={require('./edit.png')} onClick={handleShow}></img>
       </div>
 
       {/* modal for editing notes */}

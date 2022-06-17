@@ -19,6 +19,7 @@ function App() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [whoLogin, setWhoLogin] = useState();
+  const [color, setColor] = useState('9ADCFF');
   const [isLogin, setIsLogin] = useState(false);
   // const [token, setToken] = useState('')
 
@@ -57,6 +58,7 @@ function App() {
       setPassword('');
       setWhoLogin(response.data.result.username);
       localStorage.setItem('token', response.data.accessToken);
+      localStorage.setItem('whoLogin', whoLogin);
       setIsLogin(true);
       localStorage.setItem('isLogin', isLogin);
       history.push('/note');
@@ -148,14 +150,10 @@ function App() {
     history.push('/login');
     localStorage.removeItem('token');
     localStorage.removeItem('isLogin');
+    localStorage.removeItem('whoLogin');
     setIsLogin(false);
   };
-
-  // window.addEventListener("beforeunload", () => {
-  //   localStorage.removeItem('isLogin')
-  //   localStorage.removeItem('token')
-  // });
-
+  
   return (
     <div>
       <NavbarComp isLogin={isLogin} handleLogout={handleLogout} whoLogin={whoLogin} />
@@ -173,7 +171,7 @@ function App() {
           <Container className="mt-5">
             <AddNote notes={notes} handleAddNewNote={handleAddNewNote} />
           </Container>
-          <NoteContainer notes={notes} setNotes={setNotes} handleGetNote={handleGetNote} handleDelete={handleDelete} handleEditNote={handleEditNote} isLogin={isLogin} />
+          <NoteContainer notes={notes} setNotes={setNotes} handleGetNote={handleGetNote} handleDelete={handleDelete} handleEditNote={handleEditNote} isLogin={isLogin} color={color} setColor={setColor}/>
         </Route>
         <Route path="/about">
           <About />

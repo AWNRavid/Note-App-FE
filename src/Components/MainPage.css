@@ -1,0 +1,38 @@
+.main-page {
+  /* background-image: url('nastuh-abootalebi-yWwob8kwOCk-unsplash.jpg'); */
+  /* height: 100vh; */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('nastuh-abootalebi-yWwob8kwOCk-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  background-attachment: fixed;
+  color: rgb(228, 228, 228);
+}
+
+hr {
+  border: 5px solid rgb(0, 0, 0);
+  width: 50%;
+  margin: 50px auto;
+  border-radius: 10px;
+}
+
+.feature {
+  height: 350px;
+}
+
+.row {
+  height: 300px
+}
+
+.image-1 {
+  width: 100px;
+}
+
+.feature p {
+  font-size: 20px;
+}
+
+.comments { 
+  background-color: black;
+  color: white;
+}

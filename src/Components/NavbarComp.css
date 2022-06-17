@@ -1,5 +1,21 @@
 .nav {
-    background-color: wheat;
     height: 90px;
     font-size: 20px;
+    background-color: rgb(25, 25, 25);
+}
+
+.logout {
+    /* width: 100px; */
+    display: flex;
+    text-decoration: none;
+}
+.welcome {
+    padding-right: 10px;
+    margin-bottom: 0px;
+    
+}
+
+.button-logout {
+    border: 1px white solid;
+    padding: 0 10px;
 }

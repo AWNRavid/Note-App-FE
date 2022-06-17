@@ -1,17 +1,18 @@
 .note-container {
-    height: 100%;
-    padding-left: 120px;
-    /* width: 1500px; */
+  height: 100%;
+  padding-left: 120px;
+  /* width: 1500px; */
 }
 
 .note-container-notes {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    overflow-y: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  overflow-y: scroll;
+  justify-content: space-around;
 }
 
 h2 {
-    padding-top: 75px;
-    padding-bottom: 20px;
+  padding-top: 75px;
+  padding-bottom: 20px;
 }

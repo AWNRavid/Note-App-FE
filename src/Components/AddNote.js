@@ -41,6 +41,7 @@ function AddNote({ notes, handleAddNewNote }) {
               <Form.Label>Content</Form.Label>
               <Form.Control as="textarea" style={{ height: '300px' }} value={content} onChange={handleContent} />
             </Form.Group>
+            
 
             <div className="d-flex justify-content-between px-5 pb-3">
               <Button variant="primary">Discard</Button>

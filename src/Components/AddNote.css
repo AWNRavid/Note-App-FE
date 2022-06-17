@@ -1,0 +1,20 @@
+.dot {
+    height: 50px;
+    width: 50px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-1 {
+    background-color: #9ADCFF;
+}
+.dot-2 {
+    background-color: #FFF89A;
+}
+.dot-3 {
+    background-color: #FFB2A6;
+}
+.dot-4 {
+    background-color: #FF8AAE;
+}

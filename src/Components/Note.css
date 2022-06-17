@@ -1,11 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
 .note {
   padding: 25px;
-  height: 280px;
-  width: 260px;
+  height: 350px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   background-color: #9adcff;
   border-radius: 30px;
+  border: 2.5px rgb(60, 60, 60) solid;
+  font-family: 'Roboto',sans-serif;
 }
 
 .note-text {
@@ -26,4 +30,10 @@
 
 .emboh {
   display: block;
+}
+
+.edit-icon,
+.delete-icon {
+  width: 30px;
+  margin-top: 10px;
 }

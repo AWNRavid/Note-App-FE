@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+// import { Container } from 'react-bootstrap';
 import './Register.css';
 
 function Register({ username, setUsername, password, setPassword, handleRegister, isLogin, email, setEmail }) {
@@ -15,18 +15,21 @@ function Register({ username, setUsername, password, setPassword, handleRegister
           </label>
           <input required type="email" className="form-control shadow-md" placeholder="Email"></input>
         </div>
+        <hr />
         <div className="mb-3">
           <label for="username" className="form-label">
             Username
           </label>
           <input required type="text" className="form-control shadow-md" placeholder="Username"></input>
         </div>
+        <hr />
         <div className="mb-3">
           <label for="password" className="form-label">
             Password
           </label>
           <input type="password" className="form-control shadow-md" placeholder="Password"></input>
         </div>
+        <hr />
         <div className='button-form'>
           <button className="btn btn-primary text-center" type="submit">
             Submit
