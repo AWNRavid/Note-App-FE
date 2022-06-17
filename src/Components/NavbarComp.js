@@ -8,10 +8,7 @@ function NavbarComp({ isLogin, handleLogout, whoLogin }) {
     <div>
       <Navbar bg="dark" variant="dark">
         <Container>
-          {/* <Link to="/">
-            <Navbar.Brand>Notes</Navbar.Brand>
-          </Link> */}
-          <Navbar.Brand>Notes</Navbar.Brand>
+          <Navbar.Brand>My Note App</Navbar.Brand>
           <Nav className="me-auto">
             <Link to='/'>Home</Link>
             <Link to='/about' className='mx-1'>About</Link>

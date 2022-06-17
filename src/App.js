@@ -16,6 +16,7 @@ function App() {
   const [notes, setNotes] = useState([]);
   const history = useHistory();
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [whoLogin, setWhoLogin] = useState();
   const [isLogin, setIsLogin] = useState(false);
@@ -25,6 +26,7 @@ function App() {
     e.preventDefault();
     const newMembers = {
       username,
+      email,
       password,
     };
     // const {username, password} = req.body;
@@ -36,6 +38,7 @@ function App() {
         console.log('user already exist');
       } else {
         setUsername('');
+        setEmail('');
         setPassword('');
         history.push('/login');
       }
@@ -164,7 +167,7 @@ function App() {
           <LoginPage username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleLogin={handleLogin}/>
         </Route>
         <Route path="/register">
-          <Register username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleRegister={handleRegister}/>
+          <Register username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleRegister={handleRegister} email={email} setEmail={setEmail}/>
         </Route>
         <Route path="/note">
           <Container className="mt-5">
