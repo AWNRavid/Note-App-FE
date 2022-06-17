@@ -44,8 +44,3 @@ function LoginPage({ username, setUsername, password, setPassword, handleLogin})
 }
 
 export default LoginPage;
-
-{/* <div class="md-form md-outline">
-                <i class="fas fa-envelope prefix"></i>
-                <input type="email" id="emailExample" class="form-control" placeholder="Email"></input>
-              </div> */}

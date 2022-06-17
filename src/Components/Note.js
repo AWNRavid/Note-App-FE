@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Note.css';
 import { Button, Modal, Form } from 'react-bootstrap';
-import { useEffect } from 'react';
 
 function Note({ note, setNotes, handleDelete, handleEditNote }) {
   // console.log(note);

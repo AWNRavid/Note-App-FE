@@ -1,7 +1,6 @@
 import React from 'react';
-import { useEffect } from 'react';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
-import { Link, Route, Switch, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function NavbarComp({ isLogin, handleLogout, whoLogin }) {
   

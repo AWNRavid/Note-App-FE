@@ -2,15 +2,14 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavbarComp from './Components/NavbarComp';
 import NoteContainer from './Components/NoteContainer';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Container } from 'react-bootstrap';
 import AddNote from './Components/AddNote';
 import LoginPage from './Components/LoginPage';
 import Register from './Components/Register';
 import MainPage from './Components/MainPage';
 import About from './Components/About';
-import Dummy from './Components/Dummy';
-import { Link, Redirect, Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import axios from './api/notes';
 
 function App() {

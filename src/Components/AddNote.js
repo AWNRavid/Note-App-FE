@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Accordion, Modal, Form, Button } from 'react-bootstrap';
+import { Accordion, Form, Button } from 'react-bootstrap';
 
 function AddNote({ notes, handleAddNewNote }) {
   const [title, setTitle] = useState('');
