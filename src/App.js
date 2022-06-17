@@ -10,8 +10,8 @@ import Register from './Components/Register';
 import MainPage from './Components/MainPage';
 import About from './Components/About';
 import Dummy from './Components/Dummy';
-import { Link, Route, Switch, useHistory } from 'react-router-dom';
-import api from './api/notes';
+import { Link, Redirect, Route, Switch, useHistory } from 'react-router-dom';
+import axios from './api/notes';
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -31,7 +31,7 @@ function App() {
     // const {username, password} = req.body;
     console.log(username, password);
     try {
-      const response = await api.post('/register', newMembers);
+      const response = await axios.post('/register', newMembers);
       console.log(response);
       if (response.data.isExist === true) {
         console.log('user already exist');
@@ -49,14 +49,14 @@ function App() {
     e.preventDefault();
     // console.log(username, password);
     try {
-      const response = await api.post('/login', { username, password });
-      // console.log(response);
+      const response = await axios.post('/login', { username, password });
       console.log(response.data);
       setUsername('');
       setPassword('');
+      setWhoLogin(response.data.result.username);
       localStorage.setItem('token', response.data.accessToken);
-      // setToken(localStorage.getItem('token'));
       setIsLogin(true);
+      localStorage.setItem('isLogin', isLogin);
       history.push('/note');
     } catch (error) {
       console.log(`Error: ${error}`);
@@ -67,7 +67,7 @@ function App() {
     // token dimasukkan dulu ke axios
     try {
       const token = localStorage.getItem('token');
-      const response = await api.get(`/get-note/:id`, {
+      const response = await axios.get(`/get-note/:id`, {
         headers: {
           Authorization: `token ${token}`,
         },
@@ -76,7 +76,7 @@ function App() {
     } catch (error) {
       console.log(`Error: ${error}`);
       localStorage.removeItem('token');
-      history.push('/login')
+      history.push('/login');
     }
   };
 
@@ -86,7 +86,7 @@ function App() {
     console.log(title, content);
     try {
       const token = localStorage.getItem('token');
-      const response = await api.post(
+      const response = await axios.post(
         `/create-note/:userId`,
         { title, content },
         {
@@ -100,7 +100,7 @@ function App() {
     } catch (error) {
       console.log(`Error: ${error}`);
       localStorage.removeItem('token');
-      history.push('/login')
+      history.push('/login');
     }
   };
 
@@ -110,7 +110,7 @@ function App() {
     console.log(title, content);
     try {
       const token = localStorage.getItem('token');
-      const response = await api.put(
+      const response = await axios.put(
         `/edit-note/:userId/:noteId`,
         { id, title, content },
         {
@@ -123,7 +123,7 @@ function App() {
     } catch (error) {
       console.log(`Error: ${error}`);
       localStorage.removeItem('token');
-      history.push('/login')
+      history.push('/login');
     }
   };
 
@@ -131,7 +131,7 @@ function App() {
     console.log(id);
     try {
       const token = localStorage.getItem('token');
-      const response = await api.delete(`/delete-note/${id}`, {
+      await axios.delete(`/delete-note/${id}`, {
         headers: {
           Authorization: `token ${token}`,
         },
@@ -145,31 +145,38 @@ function App() {
     console.log('log out');
     history.push('/login');
     localStorage.removeItem('token');
+    localStorage.removeItem('isLogin');
+    setIsLogin(false);
   };
+
+  // window.addEventListener("beforeunload", () => {
+  //   localStorage.removeItem('isLogin')
+  //   localStorage.removeItem('token')
+  // });
 
   return (
     <div>
-      <NavbarComp isLogin={isLogin} handleLogout={handleLogout} />
+      <NavbarComp isLogin={isLogin} handleLogout={handleLogout} whoLogin={whoLogin} />
       <Switch>
         <Route exact path="/">
           <MainPage />
         </Route>
         <Route path="/login">
-          <LoginPage username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleLogin={handleLogin} />
+          <LoginPage username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleLogin={handleLogin}/>
         </Route>
         <Route path="/register">
-          <Register username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleRegister={handleRegister} />
+          <Register username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleRegister={handleRegister}/>
         </Route>
         <Route path="/note">
           <Container className="mt-5">
             <AddNote notes={notes} handleAddNewNote={handleAddNewNote} />
           </Container>
-          <NoteContainer notes={notes} setNotes={setNotes} handleGetNote={handleGetNote} handleDelete={handleDelete} handleEditNote={handleEditNote} />
+          <NoteContainer notes={notes} setNotes={setNotes} handleGetNote={handleGetNote} handleDelete={handleDelete} handleEditNote={handleEditNote} isLogin={isLogin} />
         </Route>
         <Route path="/about">
           <About />
         </Route>
-        <Route path='*'>
+        <Route path="*">
           <MainPage />
         </Route>
       </Switch>

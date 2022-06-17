@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Register({ username, setUsername, password, setPassword, handleRegister}) {
+function Register({ username, setUsername, password, setPassword, handleRegister, isLogin}) {
     
   return (
     <div className='container'>

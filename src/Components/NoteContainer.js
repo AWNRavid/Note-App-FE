@@ -4,23 +4,25 @@ import './NoteContainer.css';
 import { Container } from 'react-bootstrap';
 import { useEffect } from 'react';
 
-function NoteContainer({ notes, setNotes, handleDelete, handleEditNote, handleGetNote}) {
-
+function NoteContainer({ notes, setNotes, handleDelete, handleEditNote, handleGetNote, isLogin }) {
   useEffect(() => {
-    handleGetNote()
-  }, [handleGetNote])
+    handleGetNote();
+  }, [handleGetNote]);
 
   return (
-    <Container>
-      <h2>My Notes</h2>
-      <div className="note-container-notes custom-scroll">
-        {notes?.map((note) => {
-          return <Note key={note.id} note={note} setNotes={setNotes} handleDelete={handleDelete} handleEditNote={handleEditNote} />;
-        })}
-      </div>
-    </Container>
-    // <div></div>
+    <div>
+      <Container>
+        <h2>My Notes</h2>
+        <div className="note-container-notes custom-scroll">
+          {notes?.map((note) => {
+            return <Note key={note.id} note={note} setNotes={setNotes} handleDelete={handleDelete} handleEditNote={handleEditNote} />;
+          })}
+        </div>
+      </Container>
+    </div>
   );
 }
 
 export default NoteContainer;
+
+// <Redirect to='/login'></Redirect>
