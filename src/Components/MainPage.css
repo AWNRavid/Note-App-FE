@@ -9,12 +9,12 @@
   color: rgb(228, 228, 228);
 }
 
-hr {
+/* hr {
   border: 5px solid rgb(0, 0, 0);
   width: 50%;
   margin: 50px auto;
   border-radius: 10px;
-}
+} */
 
 .feature {
   height: 350px;
