@@ -7,24 +7,24 @@ function Register({ username, setUsername, password, setPassword, handleRegister
     <div className="container w-50 register-page mt-5 p-5 shadow-lg">
       <h2 className="text-center mb-5">Register</h2>
       <hr />
-      <img className='pencil' src={require('./pencil_icon.png')} alt="" srcset="" />
+      <img className='pencil' src={require('./pencil_icon.png')} alt=""/>
       <form onSubmit={handleRegister} className='register-form'>
         <div className="mb-3">
-          <label for="email" className="form-label">
+          <label htmlFor="email" className="form-label">
             Email
           </label>
           <input required type="email" className="form-control shadow-md" placeholder="Email"></input>
         </div>
         <hr />
         <div className="mb-3">
-          <label for="username" className="form-label">
+          <label htmlFor="username" className="form-label">
             Username
           </label>
           <input required type="text" className="form-control shadow-md" placeholder="Username"></input>
         </div>
         <hr />
         <div className="mb-3">
-          <label for="password" className="form-label">
+          <label htmlFor="password" className="form-label">
             Password
           </label>
           <input type="password" className="form-control shadow-md" placeholder="Password"></input>

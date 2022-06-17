@@ -24,17 +24,17 @@ function MainPage() {
       <div className="container text-center feature">
         <div className="row">
           <div className="col">
-            <img className="image-1" src={require('./easy-to-use.png')} alt="" srcset="" />
+            <img className="image-1" src={require('./easy-to-use.png')} alt="" />
             <h2>Easy</h2>
             <p>Just sign up and you're ready to go</p>
           </div>
           <div className="col">
-            <img className="image-1" src={require('./free.png')} alt="" srcset="" />
+            <img className="image-1" src={require('./free.png')} alt="" />
             <h2>Free</h2>
             <p>No need to pay anything</p>
           </div>
           <div className="col">
-            <img className="image-1" src={require('./booking.png')} alt="" srcset="" />
+            <img className="image-1" src={require('./booking.png')} alt="" />
             <h2>Easy</h2>
             <p>Can be used everywhere</p>
           </div>
