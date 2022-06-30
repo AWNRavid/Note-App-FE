@@ -2,35 +2,35 @@ import React from 'react';
 // import { Container } from 'react-bootstrap';
 import './Register.css';
 
-function Register({ username, setUsername, password, setPassword, handleRegister, isLogin, email, setEmail }) {
+function Register({ setUsername, setPassword, handleRegister, isLogin, email, setEmail }) {
   return (
     <div className="container w-50 register-page mt-5 p-5 shadow-lg">
       <h2 className="text-center mb-5">Register</h2>
       <hr />
-      <img className='pencil' src={require('./pencil_icon.png')} alt=""/>
-      <form onSubmit={handleRegister} className='register-form'>
+      <img className="pencil" src={require('./pencil_icon.png')} alt="" />
+      <form onSubmit={handleRegister} className="register-form">
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
             Email
           </label>
-          <input required type="email" className="form-control shadow-md" placeholder="Email"></input>
+          <input required type="email" className="form-control shadow-md" placeholder="Email" onChange={(e) => setEmail(e.target.value)}></input>
         </div>
         <hr />
         <div className="mb-3">
           <label htmlFor="username" className="form-label">
             Username
           </label>
-          <input required type="text" className="form-control shadow-md" placeholder="Username"></input>
+          <input required type="text" className="form-control shadow-md" placeholder="Username" onChange={(e) => setUsername(e.target.value)}></input>
         </div>
         <hr />
         <div className="mb-3">
           <label htmlFor="password" className="form-label">
             Password
           </label>
-          <input type="password" className="form-control shadow-md" placeholder="Password"></input>
+          <input type="password" className="form-control shadow-md" placeholder="Password" onChange={(e) => setPassword(e.target.value)}></input>
         </div>
         <hr />
-        <div className='button-form'>
+        <div className="button-form">
           <button className="btn btn-primary text-center" type="submit">
             Submit
           </button>

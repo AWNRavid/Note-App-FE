@@ -30,8 +30,6 @@ function App() {
       email,
       password,
     };
-    // const {username, password} = req.body;
-    console.log(username, password);
     try {
       const response = await axios.post('/register', newMembers);
       console.log(response);
@@ -148,12 +146,12 @@ function App() {
   const handleLogout = () => {
     console.log('log out');
     history.push('/login');
+    setIsLogin(false);
     localStorage.removeItem('token');
     localStorage.removeItem('isLogin');
     localStorage.removeItem('whoLogin');
-    setIsLogin(false);
   };
-  
+
   return (
     <div>
       <NavbarComp isLogin={isLogin} handleLogout={handleLogout} whoLogin={whoLogin} />
@@ -162,16 +160,16 @@ function App() {
           <MainPage />
         </Route>
         <Route path="/login">
-          <LoginPage username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleLogin={handleLogin}/>
+          <LoginPage username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleLogin={handleLogin} />
         </Route>
         <Route path="/register">
-          <Register username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleRegister={handleRegister} email={email} setEmail={setEmail}/>
+          <Register setUsername={setUsername} setPassword={setPassword} handleRegister={handleRegister} setEmail={setEmail} />
         </Route>
         <Route path="/note">
           <Container className="mt-5">
             <AddNote notes={notes} handleAddNewNote={handleAddNewNote} />
           </Container>
-          <NoteContainer notes={notes} setNotes={setNotes} handleGetNote={handleGetNote} handleDelete={handleDelete} handleEditNote={handleEditNote} isLogin={isLogin} color={color} setColor={setColor}/>
+          <NoteContainer notes={notes} setNotes={setNotes} handleGetNote={handleGetNote} handleDelete={handleDelete} handleEditNote={handleEditNote} isLogin={isLogin} color={color} setColor={setColor} />
         </Route>
         <Route path="/about">
           <About />
